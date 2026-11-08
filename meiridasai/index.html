@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛推特yandex-推特每日大赛_热门大赛追踪_哪个平台更新快</title>
+<meta name="description" content="每日大赛推特yandex是追踪推特每日大赛动态的导航页面，汇总热门比赛类型、更新节奏与参与入口，适合想快速了解每日大赛趋势的读者。">
+<meta name="keywords" content="推特每日大赛,每日大赛动态,大赛追踪,热门比赛类型,大赛更新节奏">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a4f6e'/%3E%3Cpath d='M7 20l5-8 4 5 3-4 6 7z' fill='%23f5c542'/%3E%3Ccircle cx='24' cy='9' r='3' fill='%23f5c542'/%3E%3C/svg%3E">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+:root {
+  --ink: #1d2b36;
+  --ink-soft: #3d5566;
+  --muted: #647b8a;
+  --line: #d8e2e9;
+  --panel: #ffffff;
+  --bg: #f2f6f9;
+  --brand: #1a4f6e;
+  --brand-dark: #123a52;
+  --accent: #e8a33d;
+  --accent-soft: #fdf3e2;
+  --teal: #2f7d7a;
+  --radius: 10px;
+  --shadow: 0 4px 14px rgba(20, 50, 70, 0.07);
+  --announce-h: 34px;
+  --header-h: 58px;
+  --sticky-offset: 100px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-offset); }
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+}
+a { color: var(--brand); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { list-style: none; }
+img, svg { max-width: 100%; display: block; }
+
+/* 吸顶公告条 + 页头 */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.announce-bar {
+  background: var(--brand-dark);
+  color: #f4e7c8;
+  font-size: 13px;
+  padding: 0 16px;
+  height: var(--announce-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+.announce-bar strong { color: var(--accent); font-weight: 600; margin-right: 6px; }
+.site-header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(20,50,70,0.05);
+}
+.header-inner {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  background: var(--brand);
+  display: grid;
+  place-items: center;
+}
+.brand-text {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--brand-dark);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.header-nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.header-nav::-webkit-scrollbar { display: none; }
+.header-nav a {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.header-nav a:hover { background: var(--accent-soft); color: var(--brand); text-decoration: none; }
+.header-search {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 3px 4px 3px 12px;
+  background: #fbfdfe;
+}
+.header-search input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 130px;
+  font-size: 13px;
+  color: var(--ink);
+}
+.header-search button {
+  border: 0;
+  background: var(--brand);
+  color: #fff;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.header-search button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* 容器 */
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* 首屏 */
+.hero {
+  background: linear-gradient(135deg, #123a52 0%, #1a4f6e 55%, #2f7d7a 100%);
+  color: #edf4f8;
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+  position: relative;
+}
+.hero-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 36px 18px 38px;
+  display: grid;
+  grid-template-columns: 1.25fr 0.9fr;
+  gap: 30px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: 30px;
+  line-height: 1.35;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.hero-desc {
+  font-size: 15px;
+  color: #cfe0e9;
+  max-width: 560px;
+  margin-bottom: 20px;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-primary, .btn-ghost {
+  display: inline-block;
+  padding: 9px 20px;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn-primary { background: var(--accent); color: #2b1e06; }
+.btn-primary:hover { background: #f0b456; text-decoration: none; }
+.btn-ghost { border: 1px solid rgba(255,255,255,0.45); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
+.hero-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-art svg { width: 100%; max-width: 330px; height: auto; }
+
+/* 三栏主区 */
+.main-layout {
+  display: grid;
+  grid-template-columns: 175px minmax(0, 1fr) 240px;
+  gap: 26px;
+  padding: 26px 0 40px;
+  align-items: start;
+}
+.left-col, .right-col { position: sticky; top: var(--sticky-offset); align-self: start; }
+
+/* 左栏 */
+.side-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 13px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+.side-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+}
+.channel-list li { margin-bottom: 4px; }
+.channel-list a {
+  display: block;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  padding: 6px 8px;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+}
+.channel-list a:hover {
+  background: var(--accent-soft);
+  color: var(--brand);
+  border-left-color: var(--accent);
+  text-decoration: none;
+}
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-cloud a {
+  font-size: 12px;
+  background: #eef4f8;
+  color: var(--ink-soft);
+  padding: 3px 9px;
+  border-radius: 12px;
+}
+.tag-cloud a:hover { background: var(--brand); color: #fff; text-decoration: none; }
+
+/* 中栏板块 */
+.section-block {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 22px 24px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  font-size: 20px;
+  color: var(--brand-dark);
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+.section-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.intro-text p { margin-bottom: 12px; font-size: 14.8px; color: var(--ink-soft); }
+.intro-text p:last-child { margin-bottom: 0; }
+
+/* 卡片网格 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  background: #fbfdfe;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card:hover { border-color: #b7cdd9; }
+.card h3 { font-size: 15px; color: var(--brand-dark); line-height: 1.4; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.card-tags span {
+  font-size: 11px;
+  background: var(--accent-soft);
+  color: #8a5a12;
+  padding: 1px 7px;
+  border-radius: 9px;
+}
+.card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.card-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 11.5px;
+  color: #8a9ba6;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* 紧凑列表 */
+.compact-list li {
+  display: flex;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px;
+  align-items: baseline;
+}
+.compact-list li:last-child { border-bottom: 0; }
+.compact-list .idx {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: #eef4f8;
+  color: var(--brand);
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.compact-list .item-main { flex: 1; }
+.compact-list .item-main strong { font-weight: 600; color: var(--ink); }
+.compact-list .item-main p { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.compact-list .item-time { font-size: 11.5px; color: #9aacb7; white-space: nowrap; }
+
+/* 分类入口 */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.category-item {
+  text-align: center;
+  padding: 14px 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  background: #fbfdfe;
+  transition: 0.15s;
+}
+.category-item:hover {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+  text-decoration: none;
+}
+.category-item small {
+  display: block;
+  font-size: 11px;
+  color: #8a9ba6;
+  margin-top: 3px;
+}
+.category-item:hover small { color: #d9e6ee; }
+
+/* 深度正文 */
+.deep-body h3 {
+  font-size: 16px;
+  color: var(--brand-dark);
+  margin: 18px 0 7px;
+}
+.deep-body p { font-size: 14.6px; color: var(--ink-soft); margin-bottom: 11px; }
+.deep-body ul { margin: 8px 0 14px 18px; }
+.deep-body li { font-size: 14.3px; color: var(--ink-soft); margin-bottom: 5px; list-style: disc; }
+
+/* 体验指南 */
+.guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.guide-step {
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  background: #f7fbfc;
+  border-radius: 0 8px 8px 0;
+}
+.guide-step strong { display: block; font-size: 14px; color: var(--brand-dark); margin-bottom: 3px; }
+.guide-step p { font-size: 13px; color: var(--muted); margin: 0; }
+
+/* FAQ */
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0;
+}
+.faq-item summary {
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  color: var(--brand);
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 12px;
+}
+.faq-item[open] summary::after { content: "−"; }
+.faq-item p {
+  font-size: 13.8px;
+  color: var(--muted);
+  padding: 0 0 12px 0;
+  line-height: 1.7;
+}
+
+/* 评论 */
+.comment-list { display: grid; gap: 10px; }
+.comment-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 13px;
+  background: #fbfdfe;
+}
+.comment-item .c-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.comment-item .c-head strong { color: var(--brand); font-weight: 600; }
+.comment-item p { font-size: 13.5px; color: var(--ink-soft); }
+
+/* 资讯 */
+.news-item {
+  padding: 11px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.news-item:last-child { border-bottom: 0; }
+.news-item h3 { font-size: 14.5px; font-weight: 600; color: var(--brand-dark); margin-bottom: 3px; }
+.news-meta { font-size: 11.5px; color: #9aacb7; margin-bottom: 4px; }
+.news-item p { font-size: 13.2px; color: var(--muted); }
+
+/* 相关推荐标签 */
+.rec-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.rec-tags a {
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 5px 14px;
+  color: var(--ink-soft);
+  background: #fbfdfe;
+}
+.rec-tags a:hover { border-color: var(--brand); color: var(--brand); text-decoration: none; }
+
+/* 右栏 */
+.right-col .side-panel { padding: 15px 14px; }
+.toc-list li { margin-bottom: 5px; }
+.toc-list a {
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: block;
+  padding: 3px 0 3px 10px;
+  border-left: 2px solid transparent;
+}
+.toc-list a:hover { border-left-color: var(--accent); color: var(--brand); text-decoration: none; }
+.hot-list li {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+  color: var(--ink-soft);
+}
+.hot-list li:last-child { border-bottom: 0; }
+.hot-list .hot-num {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 12px;
+  width: 18px;
+  flex-shrink: 0;
+}
+.hot-list .hot-title { flex: 1; }
+.extend-list li { font-size: 13px; margin-bottom: 7px; }
+.extend-list a { color: var(--ink-soft); }
+.extend-list a:hover { color: var(--brand); }
+
+/* 页尾 */
+.site-footer {
+  background: #14303f;
+  color: #b9ccd6;
+  padding: 34px 0 22px;
+  margin-top: 6px;
+}
+.footer-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  gap: 36px;
+}
+.footer-brand .brand-text { color: #fff; font-size: 18px; }
+.footer-brand p { font-size: 13px; color: #90aebd; margin-top: 8px; line-height: 1.7; }
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.footer-links h4 { font-size: 13px; color: #fff; margin-bottom: 8px; font-weight: 600; }
+.footer-links li { margin-bottom: 5px; }
+.footer-links a { font-size: 12.5px; color: #90aebd; }
+.footer-links a:hover { color: var(--accent); text-decoration: none; }
+.footer-bottom {
+  max-width: 1380px;
+  margin: 22px auto 0;
+  padding: 14px 18px 0;
+  border-top: 1px solid #21404f;
+  font-size: 12px;
+  color: #6e8e9e;
+  text-align: center;
+}
+
+/* 空状态 */
+.no-result { font-size: 14px; color: var(--muted); padding: 10px 0; display: none; }
+.no-result.show { display: block; }
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .main-layout { grid-template-columns: minmax(0, 1fr) 230px; }
+  .left-col { display: none; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-art { display: none; }
+}
+@media (max-width: 760px) {
+  .main-layout { grid-template-columns: 1fr; }
+  .right-col { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .right-col .side-panel { margin-bottom: 0; }
+  .card-grid { grid-template-columns: 1fr; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr; gap: 22px; }
+  .footer-links { grid-template-columns: repeat(2, 1fr); }
+  .header-search { display: none; }
+  .header-nav { display: none; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 24px; }
+}
+@media (max-width: 480px) {
+  .right-col { grid-template-columns: 1fr; }
+  .compact-list li { flex-wrap: wrap; }
+  .container { padding: 0 12px; }
+  .section-block { padding: 18px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 吸顶公告条 + 页头 -->
+<div class="sticky-top">
+  <div class="announce-bar">
+    <strong>更新</strong> 推特每日大赛热门场次已刷新 · 新增 3 个垂类赛道入口 · 通勤时段追踪更顺畅
+  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/#top" class="brand" aria-label="返回首页顶部">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M3 17l5-8 4 5 3-4 6 7H3z" fill="#f5c542"/>
+            <circle cx="19" cy="6" r="2.2" fill="#f5c542"/>
+          </svg>
+        </span>
+        <span class="brand-text">每日大赛推特yandex</span>
+      </a>
+      <nav class="header-nav" aria-label="主题导航">
+        <a href="/#hot">热门推荐</a>
+        <a href="/#latest">最新动态</a>
+        <a href="/#category">分类入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">常见问答</a>
+      </nav>
+      <div class="header-search">
+        <label for="siteSearch" class="sr-only" style="position:absolute;left:-9999px;">搜索内容</label>
+        <input id="siteSearch" type="search" placeholder="搜索大赛或标签…" aria-label="搜索页面内容">
+        <button type="button" id="searchBtn">查找</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- 首屏 -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <h1>每日大赛推特yandex</h1>
+      <p class="hero-desc">聚合推特每日大赛的赛道分类、更新节奏与参与入口，按热门类型、场景与选择维度整理，方便快速找到当天值得关注的比赛内容。</p>
+      <div class="hero-actions">
+        <a href="/#hot" class="btn-primary">浏览今日热门场次</a>
+        <a href="/#deep" class="btn-ghost">了解大赛类型区别</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="30" width="300" height="160" rx="14" fill="#0e2f42" stroke="#2f7d7a" stroke-width="1.5"/>
+        <rect x="28" y="48" width="120" height="10" rx="5" fill="#2f7d7a" opacity="0.7"/>
+        <rect x="28" y="68" width="80" height="8" rx="4" fill="#4a7a8c" opacity="0.6"/>
+        <rect x="28" y="92" width="150" height="42" rx="8" fill="#1a4f6e"/>
+        <rect x="38" y="102" width="60" height="7" rx="3.5" fill="#f5c542"/>
+        <rect x="38" y="116" width="100" height="6" rx="3" fill="#4a7a8c"/>
+        <rect x="190" y="48" width="100" height="86" rx="8" fill="#123a52" stroke="#2f7d7a" stroke-width="1"/>
+        <rect x="200" y="58" width="52" height="7" rx="3.5" fill="#e8a33d"/>
+        <rect x="200" y="72" width="76" height="5" rx="2.5" fill="#4a7a8c"/>
+        <rect x="200" y="84" width="64" height="5" rx="2.5" fill="#4a7a8c"/>
+        <circle cx="214" cy="112" r="8" fill="#2f7d7a"/>
+        <rect x="230" y="107" width="44" height="5" rx="2.5" fill="#4a7a8c"/>
+        <rect x="230" y="117" width="30" height="4" rx="2" fill="#4a7a8c"/>
+        <rect x="28" y="150" width="230" height="8" rx="4" fill="#1a4f6e"/>
+        <rect x="28" y="166" width="180" height="7" rx="3.5" fill="#2f7d7a" opacity="0.7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 三栏主内容 -->
+<div class="container">
+  <div class="main-layout">
+    <!-- 左栏 -->
+    <aside class="left-col" aria-label="频道导航与标签索引">
+      <div class="side-panel">
+        <div class="side-title">频道导航</div>
+        <ul class="channel-list">
+          <li><a href="/#hot">热门大赛推荐</a></li>
+          <li><a href="/#latest">最新更新追踪</a></li>
+          <li><a href="/#category">分类入口</a></li>
+          <li><a href="/#deep">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#comments">观众评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#recommend">相关推荐</a></li>
+        </ul>
+      </div>
+      <div class="side-panel">
+        <div class="side-title">热门标签</div>
+        <div class="tag-cloud">
+          <a href="/#hot">推特每日大赛</a>
+          <a href="/#category">短时竞技</a>
+          <a href="/#category">大众投票</a>
+          <a href="/#hot">通勤追踪</a>
+          <a href="/#faq">完结节奏</a>
+          <a href="/#deep">赛道对比</a>
+          <a href="/#latest">今日场次</a>
+          <a href="/#recommend">垂类大赛</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 中栏 -->
+    <main>
+      <!-- 1. 内容简介 -->
+      <section class="section-block" id="intro">
+        <h2 class="section-title">关于每日大赛推特yandex</h2>
+        <p class="section-sub">从赛道类型到更新节奏，一次理清</p>
+        <div class="intro-text">
+          <p><strong>每日大赛推特yandex</strong>是一个围绕推特平台每日大赛动态进行归类与导航的页面。推特上的大赛形式多样，从短时竞技到话题投票，从垂类作品评选到跨圈层联动，更新频率和参与方式各不相同。本页把常见的每日大赛类型、热门场次、更新节奏和选择依据整理在一起，帮助读者在短时间判断某场比赛是否值得跟进。</p>
+          <p>对于习惯在通勤路上浏览赛事信息的读者，页面按“今日热门”“最新更新”“分类入口”几个方向组织内容。推特每日大赛的赛道往往带有明显的时效性，部分场次只开放数小时，因此了解更新节奏比单纯浏览列表更重要。深度解析部分拆解了投票型与评审型大赛的差异，以及不同赛道适合的参与人群。</p>
+          <p>如果你正在几个大赛之间犹豫，分类入口和相关推荐标签提供了可比较的维度：更新频率、参与门槛、内容形态和话题热度。页面中的热度、评分与评论均为示例数据，用于展示组织方式，不构成真实排名或参与建议。所有内容围绕推特每日大赛的常见形态展开，方便按需跳转。</p>
+        </div>
+      </section>
+
+      <!-- 2. 热门内容推荐 -->
+      <section class="section-block" id="hot">
+        <h2 class="section-title">今日热门大赛推荐</h2>
+        <p class="section-sub">按赛道类型与热度整理，点击标签可继续筛选</p>
+        <div class="card-grid" id="hotCards">
+          <article class="card">
+            <h3>推特短时创意大赛 · 第 47 场</h3>
+            <div class="card-tags"><span>短时竞技</span><span>创意投稿</span><span>通勤追踪</span></div>
+            <p class="card-desc">两小时内完成主题创作并提交，适合喜欢快节奏、擅长即兴表达的参赛者，赛道更新频率高。</p>
+            <div class="card-meta"><span>热度 9.2</span><span>更新 2 小时前</span><span>评分 4.6</span></div>
+          </article>
+          <article class="card">
+            <h3>大众投票型每日大赛 · 话题评选</h3>
+            <div class="card-tags"><span>大众投票</span><span>话题评选</span><span>门槛较低</span></div>
+            <p class="card-desc">以公开投票决定当日优胜，参与门槛低，适合想快速了解社区偏好、观察话题走向的读者。</p>
+            <div class="card-meta"><span>热度 8.7</span><span>更新 4 小时前</span><span>评分 4.3</span></div>
+          </article>
+          <article class="card">
+            <h3>垂类作品评选 · 视觉赛道</h3>
+            <div class="card-tags"><span>垂类大赛</span><span>视觉作品</span><span>评审制</span></div>
+            <p class="card-desc">聚焦视觉类作品，评审团在当日公布结果，适合关注作品质量与评审标准的深度读者。</p>
+            <div class="card-meta"><span>热度 8.1</span><span>更新 6 小时前</span><span>评分 4.5</span></div>
+          </article>
+          <article class="card">
+            <h3>推特每日大赛 · 跨圈联动场</h3>
+            <div class="card-tags"><span>跨圈联动</span><span>联合赛道</span><span>晚间场</span></div>
+            <p class="card-desc">多个兴趣圈层联合发起，晚间集中更新，适合睡前浏览当天联动进展与讨论焦点。</p>
+            <div class="card-meta"><span>热度 7.9</span><span>更新 8 小时前</span><span>评分 4.2</span></div>
+          </article>
+          <article class="card">
+            <h3>限时问答挑战 · 知识赛道</h3>
+            <div class="card-tags"><span>限时问答</span><span>知识赛道</span><span>完结了吗</span></div>
+            <p class="card-desc">以问答形式进行的每日挑战，当日结算，适合想了解完结节奏与题目方向的读者。</p>
+            <div class="card-meta"><span>热度 7.5</span><span>更新 10 小时前</span><span>评分 4.0</span></div>
+          </article>
+          <article class="card">
+            <h3>每日大赛推特yandex · 新星赛道</h3>
+            <div class="card-tags"><span>新星赛道</span><span>低门槛</span><span>高频更新</span></div>
+            <p class="card-desc">面向新参与者的轻量赛道，每日开放新主题，适合比较不同赛道难度的读者参考。</p>
+            <div class="card-meta"><span>热度 7.2</span><span>更新 12 小时前</span><span>评分 4.1</span></div>
+          </article>
+        </div>
+        <p class="no-result" id="noResultHot">未找到匹配内容，试试其他关键词或标签。</p>
+      </section>
+
+      <!-- 3. 最新更新 -->
+      <section class="section-block" id="latest">
+        <h2 class="section-title">最新更新与热门动态</h2>
+        <p class="section-sub">按时间倒序，追踪当日场次变化</p>
+        <ul class="compact-list" id="latestList">
+          <li><span class="idx">1</span><div class="item-main"><strong>短时创意大赛第 47 场开启</strong><p>主题已公布，提交窗口两小时，适合通勤时段快速浏览。</p></div><span class="item-time">09:40</span></li>
+          <li><span class="idx">2</span><div class="item-main"><strong>大众投票型大赛进入第二轮</strong><p>当日话题评选更新候选名单，投票通道保持开放。</p></div><span class="item-time">09:10</span></li>
+          <li><span class="idx">3</span><div class="item-main"><strong>视觉赛道评审结果预告</strong><p>评审团将在午后公布当日入围作品，可提前查看赛道说明。</p></div><span class="item-time">08:35</span></li>
+          <li><span class="idx">4</span><div class="item-main"><strong>跨圈联动场新增联合赛道</strong><p>晚间场次增加一个联合主题，参与圈层扩展至四个。</p></div><span class="item-time">08:02</span></li>
+          <li><span class="idx">5</span><div class="item-main"><strong>限时问答挑战题目范围更新</strong><p>知识赛道补充了新的题目方向，当日结算规则不变。</p></div><span class="item-time">07:30</span></li>
+          <li><span class="idx">6</span><div class="item-main"><strong>新星赛道开放本周主题</strong><p>轻量赛道更新主题列表，适合初次参与者了解流程。</p></div><span class="item-time">07:05</span></li>
+          <li><span class="idx">7</span><div class="item-main"><strong>昨日大赛结果汇总更新</strong><p>各赛道优胜名单已归档，可在相关推荐中查看类型对比。</p></div><span class="item-time">06:50</span></li>
+          <li><span class="idx">8</span><div class="item-main"><strong>推特每日大赛话题热度回升</strong><p>多个赛道讨论量增加，晚间场关注度较高。</p></div><span class="item-time">06:20</span></li>
+        </ul>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section-block" id="category">
+        <h2 class="section-title">大赛分类入口</h2>
+        <p class="section-sub">按参与方式与内容形态划分，点击进入对应说明</p>
+        <div class="category-grid">
+          <a href="/#hot" class="category-item">短时竞技<small>快速提交</small></a>
+          <a href="/#hot" class="category-item">大众投票<small>公开评选</small></a>
+          <a href="/#hot" class="category-item">垂类作品<small>评审制</small></a>
+          <a href="/#hot" class="category-item">跨圈联动<small>联合赛道</small></a>
+          <a href="/#hot" class="category-item">限时问答<small>知识挑战</small></a>
+          <a href="/#hot" class="category-item">新星赛道<small>低门槛</small></a>
+          <a href="/#deep" class="category-item">赛道对比<small>选择依据</small></a>
+          <a href="/#faq" class="category-item">更新节奏<small>完结说明</small></a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section class="section-block" id="deep">
+        <h2 class="section-title">推特每日大赛的赛道类型与选择思路</h2>
+        <p class="section-sub">投票型、评审型与联动型分别适合谁</p>
+        <div class="deep-body">
+          <h3>投票型与评审型大赛的核心区别</h3>
+          <p>推特每日大赛的常见形态大致可以分为投票型和评审型两类。投票型大赛以公开互动为主要评判依据，参与者在规定时间内提交内容，由社区投票决定当日结果。这类赛道更新频率高、参与门槛低，适合希望快速了解社区偏好、观察话题走向的读者。评审型大赛则由评审团按既定标准筛选，结果公布时间相对固定，更适合关注作品完成度与评审标准的深度读者。</p>
+          <p>在比较两类赛道时，可以关注三个维度：提交窗口长度、结果公布时间、评价依据是否公开。短时竞技往往搭配投票或快速评审，强调即时反馈；垂类作品评选则更看重作品本身的完成度。每日大赛推特yandex 的导航结构正是按这些维度展开，方便读者在浏览时快速定位。</p>
+          <h3>更新节奏与参与窗口</h3>
+          <p>不同赛道的更新节奏差异明显。短时竞技类通常在数小时内完成一轮，适合通勤或午间休息时快速浏览；跨圈联动场多在晚间集中更新，讨论热度也集中在同一时段；限时问答挑战当日结算，题目范围相对固定。读者若想知道某场大赛一般多久更新一次，可以优先查看该赛道的提交窗口和结果公布说明。</p>
+          <ul>
+            <li>短时竞技：提交窗口短，结果当日或次日出。</li>
+            <li>大众投票：投票期覆盖数小时，结果随投票结束公布。</li>
+            <li>垂类作品：评审周期稍长，但每日仍有新场次开放。</li>
+            <li>跨圈联动：晚间集中更新，联合赛道轮换。</li>
+          </ul>
+          <h3>场景化选择：通勤看还是睡前看</h3>
+          <p>如果阅读时间碎片化，短时竞技和最新动态列表更合适，几分钟即可掌握当天主要场次；如果希望在睡前了解整体趋势，跨圈联动场和深度解析中的赛道对比更有参考价值。每日大赛推特yandex 页面把这两类需求分开呈现：热门推荐侧重快速浏览，深度解析侧重类型差异和选择依据。</p>
+          <p>对于在多个赛道之间犹豫的读者，建议先确认自己的参与目的。若只是观察趋势，投票型赛道的公开讨论更容易理解；若关注作品质量，评审型赛道的入围名单和评审说明更值得看。相关推荐中的标签也按这些方向组织，方便继续查找同类内容。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section class="section-block" id="guide">
+        <h2 class="section-title">浏览与跟进指南</h2>
+        <p class="section-sub">从导航到筛选，快速找到目标场次</p>
+        <div class="guide-grid">
+          <div class="guide-step"><strong>顶部频道快速跳转</strong><p>页头导航与左栏频道对应同一组栏目，点击即可定位到热门、最新或分类入口。</p></div>
+          <div class="guide-step"><strong>标签与分类筛选</strong><p>左栏标签和分类入口按类型、场景组织，可据此缩小浏览范围，找到适合通勤或睡前的场次。</p></div>
+          <div class="guide-step"><strong>移动端阅读适配</strong><p>手机端左右侧栏自动合并，频道转为顶部锚点，正文保持完整阅读宽度，适合碎片时间浏览。</p></div>
+          <div class="guide-step"><strong>追更与收藏路径</strong><p>最新更新列表按时间倒序排列，便于追踪当日变化；相关推荐提供同类赛道入口，方便继续浏览。</p></div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section-block" id="faq">
+        <h2 class="section-title">常见问答</h2>
+        <p class="section-sub">围绕大赛类型、更新与选择的高频问题</p>
+        <details class="faq-item" open>
+          <summary>推特每日大赛一般包含哪些赛道类型？</summary>
+          <p>常见类型包括短时竞技、大众投票、垂类作品评选、跨圈联动、限时问答和新星赛道。不同类型在提交窗口、评审方式和更新频率上有明显差异，读者可按参与门槛和关注方向选择。</p>
+        </details>
+        <details class="faq-item">
+          <summary>每日大赛推特yandex 适合什么人看？</summary>
+          <p>适合希望快速了解推特每日大赛动态的读者，包括想观察赛道趋势的浏览者、在多个大赛之间做选择的参与者，以及习惯通勤或睡前碎片化阅读的人群。</p>
+        </details>
+        <details class="faq-item">
+          <summary>推特每日大赛一般多久更新一次？</summary>
+          <p>短时竞技类通常数小时完成一轮，当日或次日公布结果；大众投票型覆盖数小时投票期；垂类评审型每日仍有新场次开放。具体节奏以各赛道说明为准。</p>
+        </details>
+        <details class="faq-item">
+          <summary>投票型大赛和评审型大赛哪个更适合新手？</summary>
+          <p>如果希望快速参与、感受社区反馈，投票型门槛较低；如果更关注作品标准和完成度，评审型更适合深入学习。新手可先从新星赛道或限时问答入手，再按兴趣转向垂类。</p>
+        </details>
+        <details class="faq-item">
+          <summary>怎么判断一场每日大赛是否已经完结？</summary>
+          <p>可以查看提交窗口是否关闭、结果是否公布。最新更新列表会标注场次状态，深度解析中也说明了不同赛道的结算节奏，建议结合两者判断。</p>
+        </details>
+        <details class="faq-item">
+          <summary>在几个大赛之间怎么选？</summary>
+          <p>先明确目的：观察趋势可选投票型，关注作品质量可选评审型，时间有限则优先短时竞技。分类入口和赛道对比段落提供了更新频率、参与门槛和内容形态的参考维度。</p>
+        </details>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section-block" id="comments">
+        <h2 class="section-title">读者评论</h2>
+        <p class="section-sub">来自不同浏览场景的反馈，语气与观点各异</p>
+        <div class="comment-list">
+          <div class="comment-item"><div class="c-head"><strong>@晨间通勤</strong><span>今天 08:12</span></div><p>早上坐地铁刷了一遍最新动态，短时竞技的提交窗口刚好赶上，分类很清楚。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@夜读小站</strong><span>今天 07:50</span></div><p>跨圈联动场放在晚间确实合理，睡前看讨论热度比白天高不少。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@赛道观察员</strong><span>昨天 22:30</span></div><p>深度解析里投票型和评审型的对比写得比较细，帮我理清了选择思路。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@轻量参与者</strong><span>昨天 21:15</span></div><p>新星赛道门槛低，适合第一次看每日大赛的人，页面标签也标得明白。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@午间刷一刷</strong><span>昨天 20:40</span></div><p>希望分类入口能再多一个按结果公布时间筛选的维度，现在只能逐条看。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@视觉作品控</strong><span>昨天 19:55</span></div><p>垂类作品评选的评审说明在深度解析里有提到，比只看结果更有参考价值。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@问答挑战者</strong><span>昨天 19:20</span></div><p>限时问答当日结算这一点很重要，页面在 FAQ 里写清楚了，不用来回翻。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@通勤追踪器</strong><span>昨天 18:30</span></div><p>手机上看左右栏合并后正文宽度合适，读起来不费劲。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@趋势阅读者</strong><span>昨天 17:45</span></div><p>热门推荐卡的标签能直接看出赛道类型，比纯标题列表直观。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@跨圈观众</strong><span>昨天 16:10</span></div><p>联合赛道的更新节奏和普通场次不太一样，建议在最新动态里再标注一下。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@睡前浏览</strong><span>昨天 15:35</span></div><p>晚间场次汇总得比较全，适合不想追实时、只想看结果的读者。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@选择困难户</strong><span>昨天 14:20</span></div><p>赛道对比那一段对我很有用，几个大赛之间犹豫时能按维度排除。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@新读者</strong><span>昨天 13:05</span></div><p>第一次看每日大赛，FAQ 的问题比较贴近实际，没有讲页面怎么用的空话。</p></div>
+          <div class="comment-item"><div class="c-head"><strong>@评审关注者</strong><span>昨天 11:40</span></div><p>评审型的结果公布时间如果能再明确一点会更好，现在需要结合说明判断。</p></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section-block" id="news">
+        <h2 class="section-title">相关资讯</h2>
+        <p class="section-sub">大赛话题与赛道变化简讯</p>
+        <div class="news-item">
+          <h3>推特每日大赛新增短时赛道分类</h3>
+          <div class="news-meta">2025-04-07 · 赛道变化</div>
+          <p>短时竞技类场次增加独立分类，提交窗口和结果公布时间在页面中同步标注，方便通勤时段浏览。</p>
+        </div>
+        <div class="news-item">
+          <h3>投票型大赛更新评选规则说明</h3>
+          <div class="news-meta">2025-04-06 · 规则调整</div>
+          <p>大众投票型场次补充了投票期与结果公布说明，参与门槛和观察方向更清晰。</p>
+        </div>
+        <div class="news-item">
+          <h3>跨圈联动场次讨论热度上升</h3>
+          <div class="news-meta">2025-04-05 · 趋势观察</div>
+          <p>多个兴趣圈层联合发起的晚间场次关注度提高，联合赛道轮换节奏成为讨论焦点。</p>
+        </div>
+        <div class="news-item">
+          <h3>垂类作品评选增加评审说明页</h3>
+          <div class="news-meta">2025-04-04 · 内容更新</div>
+          <p>视觉类与内容类作品评选补充了评审标准摘要，便于读者比较不同赛道的选择依据。</p>
+        </div>
+        <div class="news-item">
+          <h3>限时问答挑战调整题目范围</h3>
+          <div class="news-meta">2025-04-03 · 场次更新</div>
+          <p>知识赛道更新了当日题目方向，结算时间保持不变，适合碎片时间快速参与。</p>
+        </div>
+        <div class="news-item">
+          <h3>新星赛道开放更多轻量主题</h3>
+          <div class="news-meta">2025-04-02 · 入口更新</div>
+          <p>面向初次参与者的赛道增加主题数量，低门槛与高频更新成为主要特点。</p>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section-block" id="recommend">
+        <h2 class="section-title">按方向继续浏览</h2>
+        <p class="section-sub">具体赛道与场景标签，方便继续查找</p>
+        <div class="rec-tags">
+          <a href="/#hot">短时创意赛道</a>
+          <a href="/#hot">大众投票场次</a>
+          <a href="/#hot">垂类视觉评选</a>
+          <a href="/#latest">晚间联动场</a>
+          <a href="/#faq">完结节奏说明</a>
+          <a href="/#deep">赛道对比思路</a>
+          <a href="/#guide">通勤浏览路径</a>
+          <a href="/#hot">新星低门槛赛道</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- 右栏 -->
+    <aside class="right-col" aria-label="页内目录与热门条目">
+      <div class="side-panel">
+        <div class="side-title">页内目录</div>
+        <ul class="toc-list">
+          <li><a href="/#intro">内容简介</a></li>
+          <li><a href="/#hot">今日热门推荐</a></li>
+          <li><a href="/#latest">最新更新</a></li>
+          <li><a href="/#category">分类入口</a></li>
+          <li><a href="/#deep">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#comments">读者评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#recommend">相关推荐</a></li>
+        </ul>
+      </div>
+      <div class="side-panel">
+        <div class="side-title">热门条目</div>
+        <ul class="hot-list">
+          <li><span class="hot-num">01</span><span class="hot-title"><a href="/#hot">短时创意大赛 · 第 47 场</a></span></li>
+          <li><span class="hot-num">02</span><span class="hot-title"><a href="/#hot">大众投票型每日大赛</a></span></li>
+          <li><span class="hot-num">03</span><span class="hot-title"><a href="/#hot">垂类作品评选 · 视觉赛道</a></span></li>
+          <li><span class="hot-num">04</span><span class="hot-title"><a href="/#hot">跨圈联动场 · 晚间更新</a></span></li>
+          <li><span class="hot-num">05</span><span class="hot-title"><a href="/#hot">限时问答挑战 · 知识赛道</a></span></li>
+        </ul>
+      </div>
+      <div class="side-panel">
+        <div class="side-title">延伸阅读</div>
+        <ul class="extend-list">
+          <li><a href="/#deep">投票型和评审型怎么选</a></li>
+          <li><a href="/#faq">大赛一般多久更新一次</a></li>
+          <li><a href="/#guide">通勤碎片时间浏览建议</a></li>
+          <li><a href="/#news">近期赛道规则变化</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- 页尾 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-text">每日大赛推特yandex</span>
+      <p>追踪推特平台每日大赛的赛道类型、更新节奏与参与入口，按场景与选择维度整理，方便快速浏览当天值得关注的比赛内容。</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>热门方向</h4>
+        <ul>
+          <li><a href="/#hot">短时创意大赛</a></li>
+          <li><a href="/#hot">大众投票场次</a></li>
+          <li><a href="/#hot">垂类视觉评选</a></li>
+          <li><a href="/#hot">跨圈联动场</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>浏览指引</h4>
+        <ul>
+          <li><a href="/#latest">最新更新</a></li>
+          <li><a href="/#category">分类入口</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>深入内容</h4>
+        <ul>
+          <li><a href="/#deep">赛道类型对比</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#comments">读者评论</a></li>
+          <li><a href="/#recommend">相关推荐</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    部分内容为示例数据，仅用于展示页面结构。 © 2025 每日大赛推特yandex
+  </div>
+</footer>
+
+<script>
+(function(){
+  // 搜索筛选：对热门卡片和最新列表进行本地文本匹配
+  var searchInput = document.getElementById('siteSearch');
+  var searchBtn = document.getElementById('searchBtn');
+  var hotCards = document.querySelectorAll('#hotCards .card');
+  var latestItems = document.querySelectorAll('#latestList li');
+  var noResultHot = document.getElementById('noResultHot');
+
+  function runSearch() {
+    var q = (searchInput.value || '').trim().toLowerCase();
+    var visibleHot = 0;
+    hotCards.forEach(function(card){
+      var text = card.textContent.toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if (match) visibleHot++;
+    });
+    latestItems.forEach(function(item){
+      var text = item.textContent.toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      item.style.display = match ? '' : 'none';
+    });
+    if (noResultHot) {
+      if (q && visibleHot === 0) {
+        noResultHot.classList.add('show');
+      } else {
+        noResultHot.classList.remove('show');
+      }
+    }
+  }
+
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', runSearch);
+    searchInput.addEventListener('input', runSearch);
+    searchInput.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
+    });
+  }
+
+  // 锚点平滑滚动偏移已由 scroll-padding-top 处理
+})();
+</script>
+</body>
+  </html>
